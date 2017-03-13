@@ -78,4 +78,4 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('Android', () => SimpleList);
+AppRegistry.registerComponent('reactPingpp', () => SimpleList);
