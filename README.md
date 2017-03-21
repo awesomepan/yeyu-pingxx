@@ -127,23 +127,73 @@ Pingpp.setDebugModel(true);
 ```
 
 ### Android 使用示例 
+#### 导入Android Studio
+将example下的android导入到Android Studio进行编译
+##### 注册 activity
+``` xml
+<!-- Ping++ sdk -->
+        <activity
+            android:name="com.pingplusplus.android.PaymentActivity"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            
+            <!--使用QQ钱包时，需要填写-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <!-- 填写规则:qwallet + APP_ID -->
+                <data android:scheme="qwalletXXXXXXXX"/>
+            </intent-filter>
+
+        </activity>
+
+        <!-- 微信支付 sdk ，也是 Ping++ sdk 调用入口 -->
+        <activity-alias
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+        <!-- 支付宝 sdk -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+
+        <!-- 银联支付 sdk -->
+        <activity
+            android:name="com.unionpay.uppay.PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize" />
+```
 
 ```jsx
-/** 
-* 调用支付
-* @param charge 或 order
-* @param function completionCallback  支付结果回调 (result)
-*/
-Pingpp.createPayment(obejct, function(result) {
-                    //JSON.parse(result);
-                    ToastAndroid.show("react-result:" + result, ToastAndroid.SHORT);
-                });
-
 /**
 * 开启/关闭 Ping++ debug 模式 
 * @param boolean true 或 false
 */ 
 Pingpp.setDebug(true);
+
+/** 
+* 调用支付
+* @param charge 或 order
+* @param function completionCallback  支付结果回调 (result)
+*/
+Pingpp.createPayment(charge, function(result){
+    //结果回调方法
+    var res = JSON.parse(result);
+    var pay_result = res.pay_result;
+    var error_msg = res.error_msg;
+    var extra_msg = res.extra_msg;
+});
 ```
 
 
