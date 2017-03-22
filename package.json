@@ -1,0 +1,30 @@
+{
+  "name": "pingpp-react-native",
+  "version": "1.0.0",
+  "description": "React Native binding library for Ping++.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coding.net/pingplusplus/pingpp-react-native.git"
+  },
+  "keywords": [
+    "pingpp",
+    "react",
+    "react-native",
+    "react-component",
+    "ios",
+    "android",
+    "payment"
+  ],
+  "dependencies": {
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://coding.net/u/pingplusplus/p/pingpp-react-native/topic"
+  },
+  "author": "Ping++",
+  "homepage": "https://coding.net/u/pingplusplus/p/pingpp-react-native/git"
+}

@@ -1,4 +1,4 @@
-# react-native-pingpp
+# pingpp-react-native
 Ping++ 是为移动端应用以及 PC 网页量身打造的下一代支付系统，通过一个 SDK 便可以同时支持移动端以及 PC 端网页的多种主流支付渠道，你只需要一次接入即可完成多个渠道的接入。 Ping++ SDK 包括 Client SDK 和 Server SDK 两部分，支持主流的七种后端开发语言，适配了 Android，iOS 和 HTML5 三种移动端平台以及 PC 端网页。
 
 #### 支持以下渠道支付
@@ -10,16 +10,15 @@ Ping++ 是为移动端应用以及 PC 网页量身打造的下一代支付系统
 
 ### 安装
 ```sh
-npm install react-native-pingpp --save
+npm install pingpp-react-native --save
 ```
 
 ### link引用
 最新版 React Native (>=0.31) 已经支持 link 命令，不需要再使用三方的 rnpm来 link 引用了。
 ```sh
-react-native link react-native-pingpp
-
+react-native link pingpp-react-native
 ```
-这个操作会把 react-native-pingpp 模块下的客户端模块自动映射到 ReactNative工程的对应的 IOS和 Android目录里。 注意，自动link并不是万能的，有些模块我们需要再手动添加一些引用。
+这个操作会把 pingpp-react-native 模块下的客户端模块自动映射到 ReactNative工程的对应的 IOS和 Android目录里。 注意，自动link并不是万能的，有些模块我们需要再手动添加一些引用。
 
 ### iOS端配置
  打开xcode，TARGET -> General -> Linked Frameworks and Libraries ，添加添加所需依赖 Frameworks：
@@ -76,14 +75,13 @@ libz.tbd
     </string>
     ```
 
-5. `CmbWallet`（招行一网通）  需要把 `react-native-ios/TestProject/node_modules/react-native-pingpp/CmbWalletResources`目录下的 `SecreteKeyBoard`文件夹手动添加到 工程中的 `Assets.xcassets` 添加成功后即可删除该目录下的`SecreteKeyBoard`文件夹
-
+5. `CmbWallet`（招行一网通）  需要把 `react-native-ios/TestProject/node_modules/pingpp-react-native/CmbWalletResources`目录下的 `SecreteKeyBoard`文件夹手动添加到 工程中的 `Assets.xcassets` 添加成功后即可删除该目录下的`SecreteKeyBoard`文件夹
 
 ### 使用方法
-
 ```jsx
-var Pingpp = require('react-native-pingpp');
+var Pingpp = require('pingpp-react-native');
 ```
+
 ### iOS 使用示例 
 ```jsx
 /** 
@@ -92,11 +90,11 @@ var Pingpp = require('react-native-pingpp');
 * @param function completionCallback  支付结果回调 (result, error)
 */
 Pingpp.createPayment({
-                        "object":obejct,
-                        "urlScheme":"YOU-URLSCHEME"
-                    }, function(res,error) {
-                        console.log(res,error);
-            });
+    "object": obejct,
+    "urlScheme": "YOU-URLSCHEME"
+}, function(res, error) {
+    console.log(res, error);
+});
 
 /**
 * 开启/关闭 Ping++ debug 模式 
@@ -104,8 +102,8 @@ Pingpp.createPayment({
 */ 
 Pingpp.setDebugModel(true);  
 ```
-####接收并处理交易结果
 
+####接收并处理交易结果
 渠道为百度钱包或者渠道为支付宝但未安装支付宝钱包时，交易结果会在调起插件时的 Completion 中返回。渠道为微信、支付宝(安装了支付宝钱包)、银联或者测试模式时，请实现 UIApplicationDelegate 的 - application:openURL:xxxx: 方法:
 打开 `AppDelegate.m`，添加一个函数来触发支付完成后的回调
 ```objective-c
@@ -129,64 +127,65 @@ Pingpp.setDebugModel(true);
 ### Android 使用示例 
 #### 导入Android Studio
 将example下的android导入到Android Studio进行编译
+
 ##### 注册 activity
 ``` xml
-<!-- Ping++ sdk -->
-        <activity
-            android:name="com.pingplusplus.android.PaymentActivity"
-            android:configChanges="orientation|screenSize"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-            
-            <!--使用QQ钱包时，需要填写-->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+<!-- Ping++ SDK -->
+<activity
+    android:name="com.pingplusplus.android.PaymentActivity"
+    android:configChanges="orientation|screenSize"
+    android:launchMode="singleTop"
+    android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+    
+    <!--使用QQ钱包时，需要填写-->
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <!-- 填写规则:qwallet + APP_ID -->
-                <data android:scheme="qwalletXXXXXXXX"/>
-            </intent-filter>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <!-- 填写规则:qwallet + APP_ID -->
+        <data android:scheme="qwalletXXXXXXXX"/>
+    </intent-filter>
 
-        </activity>
+</activity>
 
-        <!-- 微信支付 sdk ，也是 Ping++ sdk 调用入口 -->
-        <activity-alias
-            android:name=".wxapi.WXPayEntryActivity"
-            android:exported="true"
-            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
-        <!-- 支付宝 sdk -->
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind" >
-        </activity>
-        <activity
-            android:name="com.alipay.sdk.auth.AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind" >
-        </activity>
+<!-- 微信支付 sdk ，也是 Ping++ sdk 调用入口 -->
+<activity-alias
+    android:name=".wxapi.WXPayEntryActivity"
+    android:exported="true"
+    android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+<!-- 支付宝 sdk -->
+<activity
+    android:name="com.alipay.sdk.app.H5PayActivity"
+    android:configChanges="orientation|keyboardHidden|navigation"
+    android:exported="false"
+    android:screenOrientation="behind" >
+</activity>
+<activity
+    android:name="com.alipay.sdk.auth.AuthActivity"
+    android:configChanges="orientation|keyboardHidden|navigation"
+    android:exported="false"
+    android:screenOrientation="behind" >
+</activity>
 
-        <!-- 银联支付 sdk -->
-        <activity
-            android:name="com.unionpay.uppay.PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|screenSize" />
+<!-- 银联支付 sdk -->
+<activity
+    android:name="com.unionpay.uppay.PayActivity"
+    android:configChanges="orientation|keyboardHidden|navigation|screenSize" />
 ```
 
 ```jsx
 /**
-* 开启/关闭 Ping++ debug 模式 
-* @param boolean true 或 false
-*/ 
+ * 开启/关闭 Ping++ debug 模式 
+ * @param boolean true 或 false
+ */ 
 Pingpp.setDebug(true);
 
 /** 
-* 调用支付
-* @param charge 或 order
-* @param function completionCallback  支付结果回调 (result)
-*/
+ * 调用支付
+ * @param charge 或 order
+ * @param function completionCallback  支付结果回调 (result)
+ */
 Pingpp.createPayment(charge, function(result){
     //结果回调方法
     var res = JSON.parse(result);
@@ -196,7 +195,4 @@ Pingpp.createPayment(charge, function(result){
 });
 ```
 
-
 **关于如何使用 SDK 请参考 [开发者中心](https://www.pingxx.com/docs/index)**
-
-
