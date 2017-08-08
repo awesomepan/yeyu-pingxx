@@ -24,7 +24,8 @@ public class PingppPackage implements ReactPackage {
     });
   }
 
-  @Override public List<Class<? extends JavaScriptModule>> createJSModules() {
+  // ReactNative v0.47 已移除该方法
+  public List<Class<? extends JavaScriptModule>> createJSModules() {
     return Collections.emptyList();
   }
 

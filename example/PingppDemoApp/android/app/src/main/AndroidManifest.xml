@@ -28,10 +28,10 @@
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 
-      <!-- Ping++ sdk -->
+      <!-- Ping++ SDK -->
       <activity
         android:name="com.pingplusplus.android.PaymentActivity"
-        android:configChanges="orientation|screenSize"
+        android:configChanges="orientation|keyboardHidden|navigation|screenSize"
         android:launchMode="singleTop"
         android:theme="@android:style/Theme.Translucent.NoTitleBar" >
 
@@ -54,13 +54,13 @@
       <!-- 支付宝 sdk -->
       <activity
         android:name="com.alipay.sdk.app.H5PayActivity"
-        android:configChanges="orientation|keyboardHidden|navigation"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:exported="false"
         android:screenOrientation="behind" >
       </activity>
       <activity
         android:name="com.alipay.sdk.auth.AuthActivity"
-        android:configChanges="orientation|keyboardHidden|navigation"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:exported="false"
         android:screenOrientation="behind" >
       </activity>
