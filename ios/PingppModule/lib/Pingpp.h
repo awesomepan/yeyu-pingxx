@@ -57,7 +57,10 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
  *  @param scheme           URL Scheme，支付宝渠道回调需要
  *  @param completionBlock  支付结果回调 Block
  */
-+ (void)createPayment:(NSObject *)charge viewController:(UIViewController*)viewController appURLScheme:(NSString *)scheme withCompletion:(PingppCompletion)completionBlock;
++ (void)createPayment:(NSObject *)charge
+       viewController:(UIViewController*)viewController
+         appURLScheme:(NSString *)scheme
+       withCompletion:(PingppCompletion)completionBlock;
 
 /**
  *  支付调用接口(支付宝/微信)
@@ -66,7 +69,9 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
  *  @param scheme           URL Scheme，支付宝渠道回调需要
  *  @param completion  支付结果回调 Block
  */
-+ (void)createPayment:(NSObject *)charge appURLScheme:(NSString *)scheme withCompletion:(PingppCompletion)completion;
++ (void)createPayment:(NSObject *)charge
+         appURLScheme:(NSString *)scheme
+       withCompletion:(PingppCompletion)completion;
 
 /**
  *  回调结果接口(支付宝/微信/测试模式)
@@ -76,7 +81,8 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
  *
  *  @return                 当无法处理 URL 或者 URL 格式不正确时，会返回 NO。
  */
-+ (BOOL)handleOpenURL:(NSURL *)url withCompletion:(PingppCompletion)completion;
++ (BOOL)handleOpenURL:(NSURL *)url
+       withCompletion:(PingppCompletion)completion;
 
 /**
  *  回调结果接口(支付宝/微信/测试模式)
@@ -87,7 +93,9 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
  *
  *  @return                   当无法处理 URL 或者 URL 格式不正确时，会返回 NO。
  */
-+ (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication withCompletion:(PingppCompletion)completion;
++ (BOOL)handleOpenURL:(NSURL *)url
+    sourceApplication:(NSString *)sourceApplication
+       withCompletion:(PingppCompletion)completion;
 
 /**
  *  版本号
@@ -141,23 +149,9 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
 + (void)setNetworkTimeout:(NSTimeInterval)timeout;
 
 /**
- *  设置百度钱包导航条背景
- */
-+ (void)setBdWalletNavBgImage:(UIImage *)image;
-
-/**
- *  设置百度钱包返回键Normal图像
- */
-+ (void)setBdWalletNavBackNormalImage:(UIImage *)image;
-
-/**
- *  设置百度钱包Title颜色
- */
-+ (void)setBdWalletNavTitleColor:(UIColor *)color;
-
-/**
  * 设置webView navigationItem 颜色
  */
-+ (void)setWebViewItemColor:(UIColor *)itemColor buttonColor:(UIColor*)bntColor;
++ (void)setWebViewItemColor:(UIColor *)itemColor
+                buttonColor:(UIColor*)bntColor;
 @end
 #endif
