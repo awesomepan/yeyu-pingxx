@@ -131,48 +131,58 @@ Pingpp.setDebugModel(true);
 ##### 注册 activity
 ``` xml
 <!-- Ping++ SDK -->
-<activity
-    android:name="com.pingplusplus.android.PaymentActivity"
-    android:configChanges="orientation|screenSize"
-    android:launchMode="singleTop"
-    android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-    
-    <!--使用QQ钱包时，需要填写-->
-    <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
+ <activity
+     android:name="com.pingplusplus.android.PaymentActivity"
+     android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+     android:launchMode="singleTop"
+     android:theme="@android:style/Theme.Translucent.NoTitleBar" >
 
-        <category android:name="android.intent.category.BROWSABLE"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-        <!-- 填写规则:qwallet + APP_ID -->
-        <data android:scheme="qwalletXXXXXXXX"/>
-    </intent-filter>
+     <!--使用QQ钱包时，需要填写-->
+     <intent-filter>
+         <action android:name="android.intent.action.VIEW"/>
 
-</activity>
+         <category android:name="android.intent.category.BROWSABLE"/>
+         <category android:name="android.intent.category.DEFAULT"/>
+         <!-- 填写规则:qwallet + APP_ID -->
+         <data android:scheme="qwalletXXXXXXXX"/>
+     </intent-filter>
 
-<!-- 微信支付 sdk ，也是 Ping++ sdk 调用入口 -->
-<activity-alias
-    android:name=".wxapi.WXPayEntryActivity"
-    android:exported="true"
-    android:targetActivity="com.pingplusplus.android.PaymentActivity" />
-<!-- 支付宝 sdk -->
-<activity
-    android:name="com.alipay.sdk.app.H5PayActivity"
-    android:configChanges="orientation|keyboardHidden|navigation"
-    android:exported="false"
-    android:screenOrientation="behind" >
-</activity>
-<activity
-    android:name="com.alipay.sdk.auth.AuthActivity"
-    android:configChanges="orientation|keyboardHidden|navigation"
-    android:exported="false"
-    android:screenOrientation="behind" >
-</activity>
+ </activity>
 
-<!-- 银联支付 sdk -->
-<activity
-    android:name="com.unionpay.uppay.PayActivity"
-    android:configChanges="orientation|keyboardHidden|navigation|screenSize" />
+ <!-- 微信支付 sdk ，也是 Ping++ sdk 调用入口 -->
+ <activity-alias
+     android:name=".wxapi.WXPayEntryActivity"
+     android:exported="true"
+     android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+ <!-- 支付宝 sdk -->
+ <activity
+     android:name="com.alipay.sdk.app.H5PayActivity"
+     android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+     android:exported="false"
+     android:screenOrientation="behind" >
+ </activity>
+ <activity
+     android:name="com.alipay.sdk.auth.AuthActivity"
+     android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+     android:exported="false"
+     android:screenOrientation="behind" >
+ </activity>
+
+ <!-- 银联支付 sdk -->
+ <activity
+     android:name="com.unionpay.uppay.PayActivity"
+     android:configChanges="orientation|keyboardHidden|navigation|screenSize" />
 ```
+
+##### 额外配置
+- 招行一网通配置：
+    需在string.xml中配置cmbkb_publickey字段, 如:
+    
+    ```xml
+    <string name="cmbkb_publickey">填写自己的publickey</string>
+    ```
+    
+#### 调用支付
 
 ```jsx
 /**
@@ -196,3 +206,5 @@ Pingpp.createPayment(charge, function(result){
 ```
 
 **关于如何使用 SDK 请参考 [开发者中心](https://www.pingxx.com/docs/index)**
+
+
