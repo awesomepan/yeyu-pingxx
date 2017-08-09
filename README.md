@@ -102,6 +102,15 @@ Pingpp.createPayment({
 * @param boolean true 或 false
 */ 
 Pingpp.setDebugModel(true);  
+
+/**
+* 获取 SDK 版本号 
+* @param function completionCallback  结果回调 (version)
+*/ 
+Pingpp.getVersion(function(version) {
+    alert(version);
+});
+
 ```
 
 ####接收并处理交易结果

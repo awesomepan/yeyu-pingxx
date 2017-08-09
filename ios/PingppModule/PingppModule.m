@@ -46,6 +46,10 @@ RCT_EXPORT_METHOD(setDebugModel:(BOOL)enabled){
     
 }
 
+RCT_EXPORT_METHOD(getVersion:(RCTResponseSenderBlock)block){
+    block(@[[Pingpp version]]);
+}
+
 - (NSString *)getUrlScheme {
     NSArray *urlSchemeList = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleURLTypes"];
     if ([urlSchemeList count] == 0) {

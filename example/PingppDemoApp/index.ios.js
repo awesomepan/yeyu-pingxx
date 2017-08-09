@@ -20,7 +20,11 @@ export default class PingppDemoApp extends Component {
   setDebugModel(enabled) {
     Pingpp.setDebugModel(enabled);
   };
-
+  getVersion(enabled) {
+    Pingpp.getVersion(function(res) {
+      alert(res);
+    });
+  };
   pay(channel) {
     NetUtil.postJson(
       "http://218.244.151.190/demo/charge",
@@ -57,6 +61,9 @@ export default class PingppDemoApp extends Component {
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{this.setDebugModel(true)}}>
           <Text style={styles.welcome}>开启调试</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>{this.getVersion()}}>
+          <Text style={styles.welcome}>获取 SDK 版本号</Text>
         </TouchableOpacity>
       </View>
     );
