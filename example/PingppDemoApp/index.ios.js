@@ -20,7 +20,7 @@ export default class PingppDemoApp extends Component {
   setDebugModel(enabled) {
     Pingpp.setDebugModel(enabled);
   };
-  getVersion(enabled) {
+  getVersion() {
     Pingpp.getVersion(function(res) {
       alert(res);
     });

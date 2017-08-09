@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.pingplusplus.android.PingppLog;
+import com.pingplusplus.android.Pingpp;
 
 /**
  * @author dong {hwongrex@gmail.com}
@@ -31,6 +32,11 @@ public class PingppModule extends ReactContextBaseJavaModule {
     Intent intent = new Intent(getCurrentActivity(), PingppActivity.class);
     intent.putExtra("charge", charge);
     getCurrentActivity().startActivity(intent);
+  }
+
+  @ReactMethod
+  public void getVersion(Callback callback) {
+    callback.invoke(Pingpp.VERSION);
   }
 
   @ReactMethod
