@@ -5,8 +5,8 @@ Ping++ 是为移动端应用以及 PC 网页量身打造的下一代支付系统
 1. 支付宝 (alipay)
 2. 微信支付 (wx)
 3. 银联支付(upacp)
-4. 百付宝Wap (bfb_wap)
-5. QQ钱包 (qpay)
+4. QQ钱包 (qpay)
+5. 招行一网通 (cmb_wallet)
 
 ### 安装
 ```sh
@@ -30,6 +30,7 @@ Security.framework
 QuartzCore.framework
 CoreTelephony.framework
 CoreMotion.framework
+CoreLocation.framework
 libc++.tbd
 libz.tbd
 ```
@@ -75,7 +76,7 @@ libz.tbd
     </string>
     ```
 
-5. `CmbWallet`（招行一网通）  需要把 `react-native-ios/TestProject/node_modules/pingpp-react-native/CmbWalletResources`目录下的 `SecreteKeyBoard`文件夹手动添加到 工程中的 `Assets.xcassets` 添加成功后即可删除该目录下的`SecreteKeyBoard`文件夹
+5. `CmbWallet`（招行一网通）  需要把 `node_modules/pingpp-react-native/CmbWalletResources`目录下的 `SecreteKeyBoard`文件夹手动添加到 工程中的 `Assets.xcassets` 添加成功后即可删除该目录下的`SecreteKeyBoard`文件夹
 
 ### 使用方法
 ```jsx

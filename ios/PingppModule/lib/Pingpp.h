@@ -67,7 +67,7 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
  *
  *  @param charge           Charge 对象(JSON 格式字符串 或 NSDictionary)
  *  @param scheme           URL Scheme，支付宝渠道回调需要
- *  @param completion  支付结果回调 Block
+ *  @param completionBlock  支付结果回调 Block
  */
 + (void)createPayment:(NSObject *)charge
          appURLScheme:(NSString *)scheme
@@ -77,7 +77,7 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
  *  回调结果接口(支付宝/微信/测试模式)
  *
  *  @param url              结果url
- *  @param completion  支付结果回调 Block，保证跳转支付过程中，当 app 被 kill 掉时，能通过这个接口得到支付结果
+ *  @param completionBlock  支付结果回调 Block，保证跳转支付过程中，当 app 被 kill 掉时，能通过这个接口得到支付结果
  *
  *  @return                 当无法处理 URL 或者 URL 格式不正确时，会返回 NO。
  */
@@ -89,14 +89,18 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
  *
  *  @param url                结果url
  *  @param sourceApplication  源应用 Bundle identifier
- *  @param completion    支付结果回调 Block，保证跳转支付过程中，当 app 被 kill 掉时，能通过这个接口得到支付结果
+ *  @param completionBlock    支付结果回调 Block，保证跳转支付过程中，当 app 被 kill 掉时，能通过这个接口得到支付结果
  *
  *  @return                   当无法处理 URL 或者 URL 格式不正确时，会返回 NO。
  */
 + (BOOL)handleOpenURL:(NSURL *)url
     sourceApplication:(NSString *)sourceApplication
        withCompletion:(PingppCompletion)completion;
-
+/**
+ *  web渠道支付成功后点击 "返回商户" 直接关闭支付页面
+ *  @enabled        是否启用
+ */
++ (void)ignoreResultUrl:(BOOL)enabled;
 /**
  *  版本号
  *
@@ -110,12 +114,6 @@ typedef void (^PingppCompletion)(NSString *result, PingppError *error);
  *  @param enabled    是否启用
  */
 + (void)setDebugMode:(BOOL)enabled;
-
-/**
-*  web渠道支付成功后点击 "返回商户" 直接关闭支付页面
-*  @enabled        是否启用
-*/
-+ (void)ignoreResultUrl:(BOOL)enabled;
 
 /**
  *  设置 App ID
