@@ -55,7 +55,6 @@
 		0094C3981E7133720006D297 /* AlipaySDK */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = AlipaySDK; path = PingppModule/lib/Channels/Alipay/AlipaySDK.framework/AlipaySDK; sourceTree = "<group>"; };
 		0094C39A1E7133A50006D297 /* cmbkeyboard */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = cmbkeyboard; path = PingppModule/lib/Channels/CmbWallet/cmbkeyboard.framework/cmbkeyboard; sourceTree = "<group>"; };
 		0094C39C1E7133F30006D297 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		0094C39E1E71341D0006D297 /* Xcode.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Xcode.app; path = ../../../../../../../../../Applications/Xcode.app; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +193,6 @@
 		0094C3971E7133710006D297 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0094C39E1E71341D0006D297 /* Xcode.app */,
 				0094C39C1E7133F30006D297 /* CoreMotion.framework */,
 				0094C39A1E7133A50006D297 /* cmbkeyboard */,
 				0094C3981E7133720006D297 /* AlipaySDK */,
@@ -238,7 +236,6 @@
 				};
 			};
 			buildConfigurationList = 0094C1911E70F65E0006D297 /* Build configuration list for PBXProject "PingppModule" */;
-			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
