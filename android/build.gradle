@@ -34,7 +34,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.facebook.react:react-native:+'
     compile 'com.pingxx:pingpp-core:2.1.17' //必须添加
-    compile 'com.pingxx:pingpp-alipay:2.1.17' //使用支付宝时添加
     compile 'com.pingxx:pingpp-upacp:2.1.17' //使用银联支付时添加
     compile 'com.pingxx:pingpp-bfb-sdk:2.1.17' // 使用百付宝时添加
     compile 'com.pingxx:pingpp-qpay:2.1.17' //使用QQ钱包时添加
